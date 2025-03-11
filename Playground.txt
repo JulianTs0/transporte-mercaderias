@@ -1,0 +1,58 @@
+| t1m t2m t3m t1a t2a hr1 hr2 hr3 hr4 env1 env2 empresa |
+
+t1m:= Maritimo new.
+t1m matricula: 'A0'; nombre: 'n'; precioBase: 100; tipoBuque: 2; totalTonelada: 8.
+t1m asString.
+t1m costoTotalCarga. "4700"
+
+t2m:= Maritimo new.
+t2m matricula: 'A1'; nombre: 'm'; precioBase: 1000; tipoBuque: 1; totalTonelada: 15.
+t2m asString.
+t2m costoTotalCarga. "8150"
+
+t3m:= Maritimo new.
+t3m matricula: 'A2'; nombre: 'a'; precioBase: 10; tipoBuque: 3; totalTonelada: 10.
+t3m asString.
+t3m costoTotalCarga. "4514"
+
+t1a:= Aereo new.
+t1a matricula: 'B3'; nombre: 'p'; precioBase: 250; cantidadBultos: 5.
+t1a asString.
+t1a costoTotalCarga. "1500"
+
+t2a:= Aereo new.
+t2a matricula: 'B4'; nombre: 'r'; precioBase: 2850; cantidadBultos: 10.
+t2a asString.
+t2a costoTotalCarga. "5350"
+
+hr1:= HojaDeRuta new.
+hr1 codigo: 1; origen: 'a'; destino: 'b'; nombreCliente: 'Juan'; transporte: t1m.
+hr1 asString.
+
+hr2:= HojaDeRuta new.
+hr2 codigo: 2; origen: 'c'; destino: 'b'; nombreCliente: 'Julian'; transporte: t2m.
+hr2 asString.
+
+hr3:= HojaDeRuta new.
+hr3 codigo: 3; origen: 'e'; destino: 'b'; nombreCliente: 'Pepe'; transporte: t1a.
+hr3 asString.
+
+hr4:= HojaDeRuta new.
+hr4 codigo: 4; origen: 'f'; destino: 'b'; nombreCliente: 'Jose'; transporte: t2a.
+hr4 asString.
+
+env1 := Envio new.
+env1 mes: 'Febrero'; anio: '2024'.
+env1 listadoResumidoOrdenado.
+env1 addHojaRuta: hr1; addHojaRuta: hr2; addHojaRuta: hr3; addHojaRuta: hr4.
+env1 listadoResumidoOrdenado.
+env1 costoTotalTransportarADestino: 'b'.
+env1 cantidadHojasRutaConCantidadBultosEntre: '1' y: 5.
+
+env2 := Envio new.
+env2 mes: 'Marzo'; anio: '2023'.
+env2 addHojaRuta: hr1; addHojaRuta: hr2; addHojaRuta: hr3; addHojaRuta: hr4.
+
+empresa:= Empresa new.
+empresa razonSocial: 'Cultura'; addEnvio: env1; addEnvio: env2. 
+empresa existeEnvioParaMes: 'Febrero' anio: '2025' 
